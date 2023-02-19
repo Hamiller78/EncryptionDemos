@@ -9,7 +9,9 @@ namespace CryptoAlgorithms.Encryptors
 {
     public class CesarCipherEncryptor : BaseEncryptor
     {
+        public int KeySpaceSize { get { return _charset.Length; } }
         const string _charset = "abcdefghijklmnopqrstuvwxyzäöüßABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ";
+
         protected override string Encrypt(string inputText, string key)
         {
             int shiftNumber = KeyStringToShiftNumber(key);

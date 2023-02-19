@@ -1,14 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using CryptoAlgorithms.Encryptors;
 using CryptoAlgorithms.Interfaces;
 
 namespace CryptoAlgorithms.Decryptors
 {
-    public class CesarCipherDecryptor : IDecryptor
+    public class CesarCipherBruteForceDecryptor : BaseDecryptor
     {
+        public string FindEncryptionKey(string encryptedText, string expectedText)
+        {
+            CesarCipherEncryptor encryptor = new();
+            int keySpaceSize = encryptor.KeySpaceSize;
+            for (int i = 0; i < keySpaceSize; i++)
+            {
+                string key = (keySpaceSize - i).ToString().Trim();
+                string decryptedText = encryptor.RunEncryption(encryptedText, key);
+                if (decryptedText == expectedText)
+                {
+                    return i.ToString().Trim();
+                }
+            }
+
+            throw new KeyNotFoundException("CesarCipherDecryptor tried all possible keys without success.");
+        }
     }
 }

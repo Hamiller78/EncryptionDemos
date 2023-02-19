@@ -8,5 +8,6 @@ namespace CryptoAlgorithms.Interfaces
 {
     public interface IDecryptor
     {
+        string FindEncryptionKey(string encryptedText, string expectedText);
     }
 }
