@@ -5,7 +5,7 @@ namespace CryptoAlgorithms.Decryptors
 {
     public class CesarCipherBruteForceDecryptor : BaseDecryptor
     {
-        public string FindEncryptionKey(string encryptedText, string expectedText)
+        protected override string Decrypt(string encryptedText, string expectedText)
         {
             CesarCipherEncryptor encryptor = new();
             int keySpaceSize = encryptor.KeySpaceSize;
